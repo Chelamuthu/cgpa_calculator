@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna University GPA & CGPA Calculator - Regulation 2021</title>
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #1e3c72, #2a5298); /* Gradient background */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+.navbar {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar a:hover {
+    color: #FFD700; /* Gold hover effect */
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    max-width: 900px;
+    margin: auto;
+    backdrop-filter: blur(10px);
+}
+
+select, button, input {
+    margin: 10px;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    background: rgba(0, 123, 255, 0.2); /* Light blue background */
+    color: white; /* White text for contrast */
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+select:hover, button:hover, input:hover {
+    background: rgba(0, 123, 255, 0.4); /* Darker blue on hover */
+    transform: scale(1.05); /* Smooth scaling effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+select:focus, input:focus {
+    outline: none; /* Remove default outline */
+    border: 1px solid #FFD700; /* Gold border on focus */
+    box-shadow: 0 0 10px #FFD700; /* Glow effect on focus */
+}
+
+option {
+    background: rgba(0, 123, 255, 0.2); /* Blue background for dropdown options */
+    color: white; /* White text for better readability */
+    padding: 10px;
+    border: none;
+    transition: background 0.3s ease-in-out;
+}
+
+option:hover {
+    background: rgba(0, 123, 255, 0.4); /* Darker blue on hover */
+    color: #FFD700; /* Gold text on hover */
+}
+
+button {
+    background-color: #028090; /* Teal background */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+button:hover {
+    background-color: #05668D; /* Darker teal on hover */
+    transform: scale(1.1); /* Slight scaling effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+th, td {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 14px;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+}
+
+th {
+    background-color: #00A896; /* Teal header */
+    color: white;
+    font-weight: bold;
+}
+
+td:hover {
+    background: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
+}
+
+.result {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #FFD700; /* Gold for results */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer a {
+    color: #FFD700;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer a:hover {
+    color: white;
+}
+
+.gpa-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.gpa-inputs label {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.error {
+    color: #FF6B6B; /* Soft red for errors */
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        font-size: 14px;
+    }
+} 
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <span>Welcome to the GPA & CGPA Calculator!</span>
+        <div>
+            <a href="https://www.linkedin.com/in/chellamuthu-s-b67a81355">LinkedIn</a>
+            <a href="mailto:chellamuthu5824@gmail.com">Email</a>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Anna University GPA & CGPA Calculator - Regulation 2021</h2>
+        <p>This tool helps you calculate your GPA & CGPA easily and accurately.</p>
+
+        <!-- GPA Calculator Section -->
+        <h2>GPA Calculator</h2>
+        <label for="department">Select Department:</label>
+        <select id="department" onchange="loadYears()">
+            <option value="">--Select Department--</option>
+            <option value="CSE">Computer Science Engineering</option>
+            <option value="IT">Information Technology</option>
+            <option value="AIDS">Artificial Intelligence & Data Science</option>
+            <option value="ECE">Electronics & Communication Engineering</option>
+            <option value="EEE">Electrical & Electronics Engineering</option>
+            <option value="MECH">Mechanical Engineering</option>
+            <option value="CIVIL">Civil Engineering</option>
+            
+        </select>
+        
+
+        <label for="year">Select Year:</label>
+        <select id="year" onchange="loadSemesters()">
+            <option value="">--Select Year--</option>
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+        </select>
+
+        <label for="semester">Select Semester:</label>
+        <select id="semester" onchange="loadSubjects()">
+            <option value="">--Select Semester--</option>
+        </select>
+
+        <table id="subjectsTable">
+            <tr>
+                <th>Subject Code</th>
+                <th>Subject</th>
+                <th>Credits</th>
+                <th>Grade</th>
+            </tr>
+        </table>
+        <button onclick="calculateGPA()">Calculate GPA</button>
+                <!-- GPA Section -->
+        <div id="gpaSection" style="display: none;">
+            <p class="result">GPA: <span id="gpaResult">-</span></p>
+            <p id="gpaMotivationMessage" class="result"></p>
+        </div>
+
+        <hr>
+
+        <!-- CGPA Calculator Section -->
+        <h2>CGPA Calculator</h2>
+        <label for="semesters">Select Semester:</label>
+        <select id="semesters" onchange="generateSemesterInputs()">
+            <option value="">--Select Semester--</option>
+            <option value="1">Semester 1</option>
+            <option value="2">Semester 2</option>
+            <option value="3">Semester 3</option>
+            <option value="4">Semester 4</option>
+            <option value="5">Semester 5</option>
+            <option value="6">Semester 6</option>
+            <option value="7">Semester 7</option>
+            <option value="8">Semester 8</option>
+        </select>
+        <div id="gpaInputs" class="gpa-inputs"></div>
+        <button onclick="calculateCGPA()">Calculate CGPA</button>
+       
+        
+
+                <!-- CGPA Section -->
+        <div id="cgpaSection" style="display: none;">
+            <p class="result">CGPA: <span id="cgpaResult">-</span></p>
+            <p id="cgpaMotivationMessage" class="result"></p>
+        </div>
+        <p id="errorMessage" class="error"></p>
+
+      
+    </div>
+    <div class="footer">Developed by Chellamuthu S | Contact: chellamuthu5824@gmail.com</div>
+
+    <script>
+const subjectsData = {
+    "CSE": {
+        "1-1": [
+            { code: "HS3151", name: "Professional English – I", credits: 3 },
+            { code: "MA3151", name: "Matrices and Calculus", credits: 4 },
+            { code: "PH3151", name: "Engineering Physics", credits: 3 },
+            { code: "CY3151", name: "Engineering Chemistry", credits: 3 },
+            { code: "GE3151", name: "Problem Solving and Python Programming", credits: 3 },
+            { code: "GE3171", name: "Problem Solving and Python Programming Laboratory", credits: 2 },
+            { code: "BS3171", name: "Physics and Chemistry Laboratory", credits: 2 }
+        ],
+        "1-2": [
+            { code: "HS3251", name: "Professional English – II", credits: 3 },
+            { code: "MA3251", name: "Statistics and Numerical Methods", credits: 4 },
+            { code: "PH3251", name: "Physics for Information Science", credits: 3 },
+            { code: "BE3251", name: "Basic Electrical and Electronics Engineering", credits: 3 },
+            { code: "GE3251", name: "Engineering Graphics", credits: 4 },
+            { code: "GE3271", name: "Engineering Practices Laboratory", credits: 2 },
+            { code: "BE3271", name: "Basic Electrical and Electronics Engineering Laboratory", credits: 2 }
+        ],
+        "2-1": [
+            { code: "MA3354", name: "Discrete Mathematics", credits: 4 },
+            { code: "CS3351", name: "Digital Principles and Computer Organization", credits: 3 },
+            { code: "CS3352", name: "Data Structures", credits: 3 },
+            { code: "CS3391", name: "Object Oriented Programming", credits: 3 },
+            { code: "CS3353", name: "Operating Systems", credits: 3 },
+            { code: "CS3361", name: "Data Structures Laboratory", credits: 2 },
+            { code: "CS3381", name: "Object Oriented Programming Laboratory", credits: 2 },
+            { code: "CS3362", name: "Operating Systems Laboratory", credits: 2 }
+        ],
+        "2-2": [
+            { code: "MA3391", name: "Probability and Statistics", credits: 4 },
+            { code: "CS3451", name: "Design and Analysis of Algorithms", credits: 3 },
+            { code: "CS3491", name: "Artificial Intelligence", credits: 3 },
+            { code: "CS3452", name: "Database Management Systems", credits: 3 },
+            { code: "CS3453", name: "Computer Networks", credits: 3 },
+            { code: "CS3461", name: "Database Management Systems Laboratory", credits: 2 },
+            { code: "CS3462", name: "Computer Networks Laboratory", credits: 2 }
+        ],
+        "3-1": [
+            { code: "CS3551", name: "Theory of Computation", credits: 3 },
+            { code: "CS3591", name: "Machine Learning", credits: 3 },
+            { code: "CS3501", name: "Compiler Design", credits: 3 },
+            { code: "CS3552", name: "Internet Programming", credits: 3 },
+            { code: "CS3561", name: "Internet Programming Laboratory", credits: 2 },
+            { code: "CS3562", name: "Machine Learning Laboratory", credits: 2 }
+        ],
+        "3-2": [
+            { code: "CS3651", name: "Cryptography and Network Security", credits: 3 },
+            { code: "CS3691", name: "Cloud Computing", credits: 3 },
+            { code: "CS3652", name: "Software Engineering", credits: 3 },
+            { code: "CS3661", name: "Cloud Computing Laboratory", credits: 2 },
+            { code: "CS3662", name: "Software Engineering Laboratory", credits: 2 }
+        ],
+        "4-1": [
+            { code: "CS3751", name: "Big Data Analytics", credits: 3 },
+            { code: "CS3752", name: "Cyber Security", credits: 3 },
+            { code: "CS3791", name: "Blockchain Technologies", credits: 3 },
+            { code: "CS3761", name: "Cyber Security Laboratory", credits: 2 }
+        ]
+    },
+    "ECE": {
+        "1-1": [
+            { code: "HS3151", name: "Professional English – I", credits: 3 },
+            { code: "MA3151", name: "Matrices and Calculus", credits: 4 },
+            { code: "PH3151", name: "Engineering Physics", credits: 3 },
+            { code: "CY3151", name: "Engineering Chemistry", credits: 3 },
+            { code: "GE3151", name: "Problem Solving and Python Programming", credits: 3 },
+            { code: "GE3171", name: "Problem Solving and Python Programming Laboratory", credits: 2 },
+            { code: "BS3171", name: "Physics and Chemistry Laboratory", credits: 2 }
+        ],
+        "1-2": [
+            { code: "HS3251", name: "Professional English – II", credits: 3 },
+            { code: "MA3251", name: "Statistics and Numerical Methods", credits: 4 },
+            { code: "PH3254", name: "Physics for Electronics Engineering", credits: 3 },
+            { code: "BE3254", name: "Electrical and Instrumentation Engineering", credits: 3 },
+            { code: "GE3251", name: "Engineering Graphics", credits: 4 },
+            { code: "EC3251", name: "Circuit Analysis", credits: 3 },
+            { code: "GE3271", name: "Engineering Practices Laboratory", credits: 2 },
+            { code: "EC3271", name: "Circuits Analysis Laboratory", credits: 2 }
+        ],
+        "2-1": [
+            { code: "MA3351", name: "Transforms and Partial Differential Equations", credits: 4 },
+            { code: "EC3351", name: "Electronic Devices", credits: 3 },
+            { code: "EC3391", name: "Signals and Systems", credits: 3 },
+            { code: "EC3352", name: "Digital Electronics", credits: 3 },
+            { code: "EC3353", name: "Electromagnetic Fields", credits: 3 },
+            { code: "EC3361", name: "Electronic Devices and Circuits Laboratory", credits: 2 },
+            { code: "EC3362", name: "Digital Electronics Laboratory", credits: 2 }
+        ],
+        "2-2": [
+            { code: "MA3451", name: "Probability and Random Processes", credits: 4 },
+            { code: "EC3451", name: "Linear Integrated Circuits", credits: 3 },
+            { code: "EC3491", name: "Microprocessors and Microcontrollers", credits: 3 },
+            { code: "EC3452", name: "Communication Theory", credits: 3 },
+            { code: "EC3453", name: "Control Systems", credits: 3 },
+            { code: "EC3461", name: "Microprocessors and Microcontrollers Laboratory", credits: 2 },
+            { code: "EC3462", name: "Linear Integrated Circuits Laboratory", credits: 2 }
+        ],
+        "3-1": [
+            { code: "EC3551", name: "Digital Communication", credits: 3 },
+            { code: "EC3591", name: "VLSI Design", credits: 3 },
+            { code: "EC3552", name: "Embedded Systems", credits: 3 },
+            { code: "EC3501", name: "Computer Networks", credits: 3 },
+            { code: "EC3561", name: "VLSI Design Laboratory", credits: 2 },
+            { code: "EC3562", name: "Embedded Systems Laboratory", credits: 2 }
+        ],
+        "3-2": [
+            { code: "EC3651", name: "Wireless Communication", credits: 3 },
+            { code: "EC3691", name: "Antenna and Microwave Engineering", credits: 3 },
+            { code: "EC3652", name: "Optical Communication", credits: 3 },
+            { code: "EC3661", name: "Antenna and Microwave Laboratory", credits: 2 },
+            { code: "EC3662", name: "Optical Communication Laboratory", credits: 2 }
+        ],
+        "4-1": [
+            { code: "EC3751", name: "Internet of Things", credits: 3 },
+            { code: "EC3752", name: "Artificial Intelligence and Machine Learning", credits: 3 },
+            { code: "EC3791", name: "Radar and Navigation Systems", credits: 3 },
+            { code: "EC3761", name: "Internet of Things Laboratory", credits: 2 }
+        ]
+    },
+    "AIDS": {
+        "1-1": [
+            { code: "HS3151", name: "Professional English – I", credits: 3 },
+            { code: "MA3151", name: "Matrices and Calculus", credits: 4 },
+            { code: "PH3151", name: "Engineering Physics", credits: 3 },
+            { code: "CY3151", name: "Engineering Chemistry", credits: 3 },
+            { code: "GE3151", name: "Problem Solving and Python Programming", credits: 3 },
+            { code: "GE3171", name: "Problem Solving and Python Programming Laboratory", credits: 2 },
+            { code: "BS3171", name: "Physics and Chemistry Laboratory", credits: 2 }
+        ],
+        "1-2": [
+            { code: "HS3251", name: "Professional English – II", credits: 3 },
+            { code: "MA3251", name: "Statistics and Numerical Methods", credits: 4 },
+            { code: "PH3251", name: "Materials Science", credits: 3 },
+            { code: "BE3251", name: "Basic Electrical, Electronics, and Instrumentation Engineering", credits: 3 },
+            { code: "GE3251", name: "Engineering Graphics", credits: 4 },
+            { code: "CS3251", name: "C Programming", credits: 3 },
+            { code: "GE3271", name: "Engineering Practices Laboratory", credits: 2 },
+            { code: "CS3271", name: "C Programming Laboratory", credits: 2 }
+        ],
+        "2-1": [
+            { code: "MA3351", name: "Transforms and Partial Differential Equations", credits: 4 },
+            { code: "CS3351", name: "Data Structures and Algorithms", credits: 3 },
+            { code: "AI3351", name: "Artificial Intelligence", credits: 3 },
+            { code: "AI3391", name: "Database Management Systems", credits: 3 },
+            { code: "CS3353", name: "Object-Oriented Programming", credits: 3 },
+            { code: "CS3361", name: "Data Structures and Algorithms Laboratory", credits: 2 },
+            { code: "CS3362", name: "Object-Oriented Programming Laboratory", credits: 2 }
+        ],
+        "2-2": [
+            { code: "MA3451", name: "Probability and Statistics", credits: 4 },
+            { code: "AI3451", name: "Machine Learning", credits: 3 },
+            { code: "CS3451", name: "Operating Systems", credits: 3 },
+            { code: "CS3452", name: "Computer Networks", credits: 3 },
+            { code: "AI3452", name: "Deep Learning", credits: 3 },
+            { code: "AI3461", name: "Machine Learning Laboratory", credits: 2 },
+            { code: "CS3461", name: "Operating Systems Laboratory", credits: 2 }
+        ],
+        "3-1": [
+            { code: "AI3551", name: "Big Data Analytics", credits: 3 },
+            { code: "AI3552", name: "Natural Language Processing", credits: 3 },
+            { code: "AI3591", name: "Cloud Computing", credits: 3 },
+            { code: "AI3501", name: "Cybersecurity", credits: 3 },
+            { code: "AI3561", name: "Big Data Laboratory", credits: 2 },
+            { code: "AI3562", name: "Cloud Computing Laboratory", credits: 2 }
+        ],
+        "3-2": [
+            { code: "AI3651", name: "Reinforcement Learning", credits: 3 },
+            { code: "AI3652", name: "Computer Vision", credits: 3 },
+            { code: "AI3691", name: "IoT and Edge AI", credits: 3 },
+            { code: "AI3661", name: "Computer Vision Laboratory", credits: 2 },
+            { code: "AI3662", name: "IoT Laboratory", credits: 2 }
+        ],
+        "4-1": [
+            { code: "AI3751", name: "Explainable AI", credits: 3 },
+            { code: "AI3752", name: "AI Ethics and Governance", credits: 3 },
+            { code: "AI3791", name: "AI in Healthcare", credits: 3 },
+            { code: "AI3761", name: "AI Capstone Project", credits: 2 }
+        ]
+    },
+    "IT": {
+        "1-1": [
+            { code: "HS3151", name: "Professional English – I", credits: 3 },
+            { code: "MA3151", name: "Matrices and Calculus", credits: 4 },
+            { code: "PH3151", name: "Engineering Physics", credits: 3 },
+            { code: "CY3151", name: "Engineering Chemistry", credits: 3 },
+            { code: "GE3151", name: "Problem Solving and Python Programming", credits: 3 },
+            { code: "GE3171", name: "Problem Solving and Python Programming Laboratory", credits: 2 },
+            { code: "BS3171", name: "Physics and Chemistry Laboratory", credits: 2 }
+        ],
+        "1-2": [
+            { code: "HS3251", name: "Professional English – II", credits: 3 },
+            { code: "MA3251", name: "Statistics and Numerical Methods", credits: 4 },
+            { code: "PH3251", name: "Physics for Information Science", credits: 3 },
+            { code: "BE3255", name: "Basic Electrical, Electronics and Measurement Engineering", credits: 3 },
+            { code: "CS3251", name: "Programming in C", credits: 3 },
+            { code: "GE3251", name: "Engineering Graphics", credits: 4 },
+            { code: "GE3271", name: "Engineering Practices Laboratory", credits: 2 },
+            { code: "CS3271", name: "C Programming Laboratory", credits: 2 }
+        ],
+        "2-1": [
+            { code: "MA3354", name: "Discrete Mathematics", credits: 4 },
+            { code: "CS3351", name: "Data Structures", credits: 3 },
+            { code: "IT3351", name: "Computer Organization and Architecture", credits: 3 },
+            { code: "IT3391", name: "Database Management Systems", credits: 3 },
+            { code: "CS3353", name: "Object-Oriented Programming", credits: 3 },
+            { code: "CS3361", name: "Data Structures Laboratory", credits: 2 },
+            { code: "CS3362", name: "Object-Oriented Programming Laboratory", credits: 2 }
+        ],
+        "2-2": [
+            { code: "MA3451", name: "Probability and Statistics", credits: 4 },
+            { code: "IT3451", name: "Software Engineering", credits: 3 },
+            { code: "CS3451", name: "Operating Systems", credits: 3 },
+            { code: "CS3452", name: "Computer Networks", credits: 3 },
+            { code: "IT3452", name: "Web Technology", credits: 3 },
+            { code: "IT3461", name: "Web Technology Laboratory", credits: 2 },
+            { code: "CS3461", name: "Operating Systems Laboratory", credits: 2 }
+        ],
+        "3-1": [
+            { code: "IT3551", name: "Mobile Computing", credits: 3 },
+            { code: "IT3552", name: "Internet of Things", credits: 3 },
+            { code: "IT3591", name: "Cloud Computing", credits: 3 },
+            { code: "IT3501", name: "Cybersecurity", credits: 3 },
+            { code: "IT3561", name: "Mobile Computing Laboratory", credits: 2 },
+            { code: "IT3562", name: "Cloud Computing Laboratory", credits: 2 }
+        ],
+        "3-2": [
+            { code: "IT3651", name: "Artificial Intelligence", credits: 3 },
+            { code: "IT3652", name: "Blockchain Technology", credits: 3 },
+            { code: "IT3691", name: "Big Data Analytics", credits: 3 },
+            { code: "IT3661", name: "Blockchain Laboratory", credits: 2 },
+            { code: "IT3662", name: "Big Data Laboratory", credits: 2 }
+        ],
+        "4-1": [
+            { code: "IT3751", name: "Machine Learning", credits: 3 },
+            { code: "IT3752", name: "Software Testing and Quality Assurance", credits: 3 },
+            { code: "IT3791", name: "IT Project Management", credits: 3 },
+            { code: "IT3761", name: "Machine Learning Laboratory", credits: 2 }
+        ]
+    },
+    "EEE": {
+        "1-1": [
+            { code: "HS3151", name: "Professional English – I", credits: 3 },
+            { code: "MA3151", name: "Matrices and Calculus", credits: 4 },
+            { code: "PH3151", name: "Engineering Physics", credits: 3 },
+            { code: "CY3151", name: "Engineering Chemistry", credits: 3 },
+            { code: "GE3151", name: "Problem Solving and Python Programming", credits: 3 },
+            { code: "GE3171", name: "Problem Solving and Python Programming Laboratory", credits: 2 },
+            { code: "BS3171", name: "Physics and Chemistry Laboratory", credits: 2 }
+        ],
+        "1-2": [
+            { code: "HS3251", name: "Professional English – II", credits: 3 },
+            { code: "MA3251", name: "Statistics and Numerical Methods", credits: 4 },
+            { code: "PH3251", name: "Physics for Electrical Engineering", credits: 3 },
+            { code: "BE3251", name: "Basic Civil and Mechanical Engineering", credits: 3 },
+            { code: "EE3251", name: "Circuit Theory", credits: 3 },
+            { code: "GE3251", name: "Engineering Graphics", credits: 4 },
+            { code: "GE3271", name: "Engineering Practices Laboratory", credits: 2 }
+        ],
+        "2-1": [
+            { code: "MA3351", name: "Transforms and Partial Differential Equations", credits: 4 },
+            { code: "EE3351", name: "Electrical Machines - I", credits: 3 },
+            { code: "EE3391", name: "Analog and Digital Electronics", credits: 3 },
+            { code: "EE3352", name: "Electromagnetic Fields", credits: 3 },
+            { code: "EE3361", name: "Electrical Machines Laboratory - I", credits: 2 },
+            { code: "EE3362", name: "Analog and Digital Electronics Laboratory", credits: 2 }
+        ],
+        "2-2": [
+            { code: "MA3451", name: "Probability and Random Processes", credits: 4 },
+            { code: "EE3451", name: "Electrical Machines - II", credits: 3 },
+            { code: "EE3452", name: "Control Systems", credits: 3 },
+            { code: "EE3453", name: "Microprocessors and Microcontrollers", credits: 3 },
+            { code: "EE3461", name: "Electrical Machines Laboratory - II", credits: 2 },
+            { code: "EE3462", name: "Microprocessors and Microcontrollers Laboratory", credits: 2 }
+        ],
+        "3-1": [
+            { code: "EE3551", name: "Power System Analysis", credits: 3 },
+            { code: "EE3552", name: "Power Electronics", credits: 3 },
+            { code: "EE3553", name: "Renewable Energy Systems", credits: 3 },
+            { code: "EE3561", name: "Power Electronics Laboratory", credits: 2 },
+            { code: "EE3562", name: "Control and Instrumentation Laboratory", credits: 2 }
+        ],
+        "3-2": [
+            { code: "EE3651", name: "Power System Protection and Switchgear", credits: 3 },
+            { code: "EE3652", name: "High Voltage Engineering", credits: 3 },
+            { code: "EE3661", name: "Power System Simulation Laboratory", credits: 2 }
+        ],
+        "4-1": [
+            { code: "EE3751", name: "Smart Grid Technologies", credits: 3 },
+            { code: "EE3752", name: "Electric Vehicles and Energy Storage", credits: 3 },
+            { code: "EE3761", name: "Project Work", credits: 6 }
+        ]
+    },
+    "CIVIL": {
+        "1-1": [
+            { code: "HS3151", name: "Professional English – I", credits: 3 },
+            { code: "MA3151", name: "Matrices and Calculus", credits: 4 },
+            { code: "PH3151", name: "Engineering Physics", credits: 3 },
+            { code: "CY3151", name: "Engineering Chemistry", credits: 3 },
+            { code: "GE3151", name: "Problem Solving and Python Programming", credits: 3 },
+            { code: "GE3171", name: "Problem Solving and Python Programming Laboratory", credits: 2 },
+            { code: "BS3171", name: "Physics and Chemistry Laboratory", credits: 2 }
+        ],
+        "1-2": [
+            { code: "HS3251", name: "Professional English – II", credits: 3 },
+            { code: "MA3251", name: "Statistics and Numerical Methods", credits: 4 },
+            { code: "PH3251", name: "Physics for Civil Engineering", credits: 3 },
+            { code: "BE3252", name: "Basic Electrical and Electronics Engineering", credits: 3 },
+            { code: "GE3251", name: "Engineering Graphics", credits: 4 },
+            { code: "GE3271", name: "Engineering Practices Laboratory", credits: 2 }
+        ],
+        "2-1": [
+            { code: "MA3351", name: "Transforms and Partial Differential Equations", credits: 4 },
+            { code: "CE3351", name: "Strength of Materials I", credits: 3 },
+            { code: "CE3352", name: "Fluid Mechanics", credits: 3 },
+            { code: "CE3391", name: "Surveying", credits: 3 },
+            { code: "CE3361", name: "Surveying Laboratory", credits: 2 },
+            { code: "CE3362", name: "Strength of Materials Laboratory", credits: 2 }
+        ],
+        "2-2": [
+            { code: "MA3451", name: "Probability and Statistics", credits: 4 },
+            { code: "CE3451", name: "Strength of Materials II", credits: 3 },
+            { code: "CE3452", name: "Hydraulics and Hydraulic Machines", credits: 3 },
+            { code: "CE3453", name: "Engineering Geology", credits: 3 },
+            { code: "CE3461", name: "Hydraulics Laboratory", credits: 2 },
+            { code: "CE3462", name: "Engineering Geology Laboratory", credits: 2 }
+        ],
+        "3-1": [
+            { code: "CE3551", name: "Structural Analysis I", credits: 3 },
+            { code: "CE3552", name: "Design of Reinforced Concrete Structures", credits: 3 },
+            { code: "CE3553", name: "Transportation Engineering", credits: 3 },
+            { code: "CE3561", name: "Transportation Engineering Laboratory", credits: 2 },
+            { code: "CE3562", name: "Concrete and Highway Materials Laboratory", credits: 2 }
+        ],
+        "3-2": [
+            { code: "CE3651", name: "Structural Analysis II", credits: 3 },
+            { code: "CE3652", name: "Design of Steel Structures", credits: 3 },
+            { code: "CE3661", name: "Structural Engineering Laboratory", credits: 2 }
+        ],
+        "4-1": [
+            { code: "CE3751", name: "Environmental Engineering", credits: 3 },
+            { code: "CE3752", name: "Construction Management and Estimation", credits: 3 },
+            { code: "CE3761", name: "Project Work", credits: 6 }
+        ]
+    },
+    "MECH": {
+        "1-1": [
+            { code: "HS3151", name: "Professional English – I", credits: 3 },
+            { code: "MA3151", name: "Matrices and Calculus", credits: 4 },
+            { code: "PH3151", name: "Engineering Physics", credits: 3 },
+            { code: "CY3151", name: "Engineering Chemistry", credits: 3 },
+            { code: "GE3151", name: "Problem Solving and Python Programming", credits: 3 },
+            { code: "GE3171", name: "Problem Solving and Python Programming Laboratory", credits: 2 },
+            { code: "BS3171", name: "Physics and Chemistry Laboratory", credits: 2 }
+        ],
+        "1-2": [
+            { code: "HS3251", name: "Professional English – II", credits: 3 },
+            { code: "MA3251", name: "Vector Calculus and Complex Analysis", credits: 4 },
+            { code: "PH3251", name: "Physics for Mechanical Engineering", credits: 3 },
+            { code: "BE3252", name: "Basic Electrical, Electronics and Instrumentation Engineering", credits: 3 },
+            { code: "GE3251", name: "Engineering Graphics", credits: 4 },
+            { code: "GE3271", name: "Engineering Practices Laboratory", credits: 2 }
+        ],
+        "2-1": [
+            { code: "MA3351", name: "Transforms and Partial Differential Equations", credits: 4 },
+            { code: "ME3351", name: "Engineering Mechanics", credits: 3 },
+            { code: "ME3391", name: "Manufacturing Technology – I", credits: 3 },
+            { code: "ME3352", name: "Thermodynamics", credits: 3 },
+            { code: "ME3361", name: "Manufacturing Technology Laboratory – I", credits: 2 },
+            { code: "ME3362", name: "Engineering Mechanics and Strength of Materials Laboratory", credits: 2 }
+        ],
+        "2-2": [
+            { code: "MA3451", name: "Probability and Statistics", credits: 4 },
+            { code: "ME3451", name: "Fluid Mechanics and Machinery", credits: 3 },
+            { code: "ME3491", name: "Manufacturing Technology – II", credits: 3 },
+            { code: "ME3452", name: "Strength of Materials", credits: 3 },
+            { code: "ME3461", name: "Fluid Mechanics and Strength of Materials Laboratory", credits: 2 },
+            { code: "ME3462", name: "Manufacturing Technology Laboratory – II", credits: 2 }
+        ],
+        "3-1": [
+            { code: "ME3551", name: "Kinematics of Machinery", credits: 3 },
+            { code: "ME3552", name: "Thermal Engineering – I", credits: 3 },
+            { code: "ME3591", name: "Design of Machine Elements", credits: 3 },
+            { code: "ME3561", name: "Thermal Engineering Laboratory", credits: 2 },
+            { code: "ME3562", name: "Dynamics Laboratory", credits: 2 }
+        ],
+        "3-2": [
+            { code: "ME3651", name: "Dynamics of Machinery", credits: 3 },
+            { code: "ME3652", name: "Thermal Engineering – II", credits: 3 },
+            { code: "ME3661", name: "CAD/CAM Laboratory", credits: 2 }
+        ],
+        "4-1": [
+            { code: "ME3751", name: "Automobile Engineering", credits: 3 },
+            { code: "ME3752", name: "Industrial Engineering and Management", credits: 3 },
+            { code: "ME3761", name: "Project Work", credits: 6 }
+        ]
+    }
+
+
+};
+
+
+function loadYears() {
+        // Reset the semester dropdown and subjects table when the year changes
+        document.getElementById("year").value = "";
+        document.getElementById("semester").innerHTML = "<option value=''>--Select Semester--</option>";
+        document.getElementById("subjectsTable").innerHTML = "<tr><th>Subject Code</th><th>Subject</th><th>Credits</th><th>Grade</th></tr>";
+    }
+
+    function loadYears() {
+        // Reset the semester dropdown and subjects table when the year changes
+        document.getElementById("year").value = "";
+        document.getElementById("semester").innerHTML = "<option value=''>--Select Semester--</option>";
+        document.getElementById("subjectsTable").innerHTML = "<tr><th>Subject Code</th><th>Subject</th><th>Credits</th><th>Grade</th></tr>";
+    }
+
+    function loadSemesters() {
+    const year = document.getElementById("year").value; // Get the selected year
+    const semesterSelect = document.getElementById("semester"); // Get the semester dropdown
+    semesterSelect.innerHTML = "<option value=''>--Select Semester--</option>"; // Reset the semester dropdown
+
+    if (year) {
+        // Dynamically generate semesters based on the selected year
+        const totalSemesters = parseInt(year) * 2; // Each year has 2 semesters
+        const startSemester = (parseInt(year) - 1) * 2 + 1; // Calculate the starting semester for the year
+
+        for (let sem = startSemester; sem <= totalSemesters; sem++) {
+            const option = document.createElement("option");
+            option.value = `${Math.ceil(sem / 2)}-${sem % 2 === 0 ? 2 : 1}`; // Format as "1-1", "1-2", etc.
+            option.textContent = `Semester ${sem}`;
+            semesterSelect.appendChild(option);
+        }
+    }
+}
+
+function loadSubjects() {
+    const department = document.getElementById("department").value; // Get the selected department
+    const semester = document.getElementById("semester").value; // Get the selected semester
+    const subjectsTable = document.getElementById("subjectsTable"); // Get the subjects table
+    subjectsTable.innerHTML = "<tr><th>Subject Code</th><th>Subject</th><th>Credits</th><th>Grade</th></tr>"; // Reset the table
+
+    if (subjectsData[department] && subjectsData[department][semester]) {
+        // Populate the table with subjects for the selected department and semester
+        subjectsData[department][semester].forEach(subject => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${subject.code}</td>
+                <td>${subject.name}</td>
+                <td>${subject.credits}</td>
+                <td>
+                    <select>
+                        <option value="10">O</option>
+                        <option value="9">A+</option>
+                        <option value="8">A</option>
+                        <option value="7">B+</option>
+                        <option value="6">B</option>
+                        <option value="5">C</option>
+                        <option value="0">RA</option>
+                    </select>
+                </td>
+            `;
+            subjectsTable.appendChild(row);
+        });
+    } else {
+        // Show an error message if no subjects are found
+        const row = document.createElement("tr");
+        row.innerHTML = `<td colspan="4">No subjects found for the selected department and semester.</td>`;
+        subjectsTable.appendChild(row);
+    }
+}
+
+function calculateGPA() {
+    const rows = document.querySelectorAll("#subjectsTable tr");
+    let totalCredits = 0;
+    let weightedSum = 0;
+
+    rows.forEach((row, index) => {
+        if (index === 0) return; // Skip header row
+        const credits = parseInt(row.cells[2].textContent);
+        const grade = parseInt(row.cells[3].querySelector("select").value);
+
+        if (!isNaN(credits) && !isNaN(grade)) {
+            totalCredits += credits;
+            weightedSum += credits * grade;
+        }
+    });
+
+    const gpa = totalCredits > 0 ? (weightedSum / totalCredits).toFixed(2) : "Invalid input!";
+    document.getElementById("gpaResult").textContent = gpa;
+
+    // Display motivational message for GPA
+    const gpaMotivation = document.getElementById("gpaMotivationMessage");
+    if (gpa === "Invalid input!") {
+        gpaMotivation.textContent = "Please ensure all grades and credits are entered correctly.";
+    } else if (gpa >= 9) {
+        gpaMotivation.textContent = "Excellent work! Keep up the great performance!";
+    } else if (gpa >= 7) {
+        gpaMotivation.textContent = "Good job! You’re doing well, but there’s always room for improvement.";
+    } else if (gpa >= 5) {
+        gpaMotivation.textContent = "You’re passing, but consider putting in more effort to improve.";
+    } else {
+        gpaMotivation.textContent = "Don’t be discouraged! Learn from your mistakes and aim higher next time.";
+    }
+
+    // Show the GPA section
+    document.getElementById("gpaSection").style.display = "block";
+}
+
+function calculateCGPA() {
+    const gpaInputs = document.querySelectorAll("#gpaInputs input");
+    let totalGPA = 0;
+    let count = 0;
+    let isValid = true;
+    const errorMessage = document.getElementById("errorMessage");
+    errorMessage.textContent = ""; // Clear previous error messages
+
+    gpaInputs.forEach(input => {
+        const gpa = parseFloat(input.value);
+        if (isNaN(gpa) || gpa < 0 || gpa > 10) {
+            isValid = false;
+            input.style.border = "2px solid red"; // Highlight invalid input
+        } else {
+            input.style.border = ""; // Reset border for valid input
+            totalGPA += gpa;
+            count++;
+        }
+    });
+
+    if (!isValid) {
+        errorMessage.textContent = "Please enter valid GPA values (0.00 - 10.00) for all semesters.";
+        return;
+    }
+
+    if (count > 0) {
+        const cgpa = (totalGPA / count).toFixed(2);
+        document.getElementById("cgpaResult").textContent = cgpa;
+
+        // Display motivational message for CGPA
+        const cgpaMotivation = document.getElementById("cgpaMotivationMessage");
+        if (cgpa >= 9) {
+            cgpaMotivation.textContent = "Outstanding performance! Keep aiming for the stars!";
+        } else if (cgpa >= 7) {
+            cgpaMotivation.textContent = "Great job! Stay consistent and keep improving.";
+        } else if (cgpa >= 5) {
+            cgpaMotivation.textContent = "You’re doing okay, but there’s potential for more. Keep pushing!";
+        } else {
+            cgpaMotivation.textContent = "Don’t give up! Reflect on your journey and strive for better results.";
+        }
+
+        // Show the CGPA section
+        document.getElementById("cgpaSection").style.display = "block";
+    } else {
+        document.getElementById("cgpaResult").textContent = "Invalid input!";
+    }
+}
+        function generateSemesterInputs() {
+            const selectedSemester = parseInt(document.getElementById("semesters").value);
+            const gpaInputsDiv = document.getElementById("gpaInputs");
+            gpaInputsDiv.innerHTML = ""; // Clear previous inputs
+
+            if (!isNaN(selectedSemester)) {
+                for (let sem = 1; sem <= selectedSemester; sem++) {
+                    const label = document.createElement("label");
+                    label.textContent = `Semester ${sem} GPA:`;
+                    label.setAttribute("for", `sem${sem}`);
+                    
+                    const input = document.createElement("input");
+                    input.type = "number";
+                    input.id = `sem${sem}`;
+                    input.step = "0.01";
+                    input.min = "0";
+                    input.max = "10";
+                    input.placeholder = "Enter GPA";
+
+                    gpaInputsDiv.appendChild(label);
+                    gpaInputsDiv.appendChild(input);
+                }
+            }
+        }
+
+
+    </script>
+</body>
+</html>
