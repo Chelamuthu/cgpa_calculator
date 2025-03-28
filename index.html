@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anna University GPA & CGPA Calculator - Regulation 2021</title>
     <style>
-       body {
+        /* General Styles */
+body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #001f3f, #003366, #004080);
     color: white;
@@ -14,6 +15,7 @@
     margin: 0;
 }
 
+/* Navigation Bar */
 .navbar {
     background: rgba(255, 255, 255, 0.1);
     padding: 15px;
@@ -41,16 +43,18 @@
     transform: scale(1.1);
 }
 
+/* Main Container */
 .container {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.1);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     max-width: 900px;
     margin: auto;
     backdrop-filter: blur(12px);
 }
 
+/* Headings */
 h2 {
     font-size: 28px;
     font-weight: bold;
@@ -58,6 +62,7 @@ h2 {
     color: #00aaff;
 }
 
+/* Inputs and Buttons */
 select, button, input {
     margin: 10px;
     padding: 12px;
@@ -88,6 +93,8 @@ button {
     cursor: pointer;
     padding: 12px 20px;
     border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    border: none;
 }
 
 button:hover {
@@ -97,6 +104,7 @@ button:hover {
     transform: scale(1.1);
 }
 
+/* Table */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -126,6 +134,7 @@ td:hover {
     transform: scale(1.05);
 }
 
+/* Results Section */
 .result {
     font-size: 26px;
     font-weight: bold;
@@ -134,6 +143,7 @@ td:hover {
     text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
 }
 
+/* Footer */
 .footer {
     margin-top: 20px;
     font-size: 14px;
@@ -151,12 +161,23 @@ td:hover {
     text-shadow: 0 0 10px white;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         padding: 20px;
         font-size: 14px;
     }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar a {
+        margin: 5px;
+    }
 }
+
 
     </style>
 </head>
