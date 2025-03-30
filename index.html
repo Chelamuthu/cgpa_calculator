@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anna University GPA & CGPA Calculator - Regulation 2021</title>
+   
     <style>
         /* General Styles */
 body {
@@ -13,19 +14,21 @@ body {
     text-align: center;
     padding: 20px;
     margin: 0;
+    overflow-x: hidden;
 }
 
 /* Navigation Bar */
 .navbar {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
     margin-bottom: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease-in-out;
 }
 
 .navbar a {
@@ -35,31 +38,42 @@ body {
     margin: 0 15px;
     font-weight: bold;
     transition: all 0.3s ease-in-out;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .navbar a:hover {
     color: #00d4ff;
-    text-shadow: 0 0 10px #00d4ff;
+    text-shadow: 0 0 15px #00d4ff;
+    background: rgba(255, 255, 255, 0.2);
     transform: scale(1.1);
 }
 
 /* Main Container */
 .container {
     background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
+    padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     max-width: 900px;
     margin: auto;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(15px);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Headings */
 h2 {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
     color: #00aaff;
+    margin-bottom: 15px;
 }
 
 /* Inputs and Buttons */
@@ -67,40 +81,39 @@ select, button, input {
     margin: 10px;
     padding: 12px;
     font-size: 16px;
-    border-radius: 10px;
+    border-radius: 12px;
     border: none;
     background: rgba(0, 153, 255, 0.3);
     color: white;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 select:hover, button:hover, input:hover {
     background: rgba(0, 153, 255, 0.5);
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
 }
 
 select:focus, input:focus {
     outline: none;
-    border: 1px solid #00d4ff;
-    box-shadow: 0 0 15px #00d4ff;
+    border: 2px solid #00d4ff;
+    box-shadow: 0 0 20px #00d4ff;
 }
 
 button {
-    background-color: #005bb5;
+    background: linear-gradient(135deg, #005bb5, #004080);
     font-weight: bold;
     cursor: pointer;
-    padding: 12px 20px;
-    border-radius: 8px;
+    padding: 14px 24px;
+    border-radius: 10px;
     transition: all 0.3s ease-in-out;
-    border: none;
 }
 
 button:hover {
-    background-color: #003f88;
+    background: linear-gradient(135deg, #004080, #003366);
     color: #00d4ff;
-    text-shadow: 0 0 10px #00d4ff;
+    text-shadow: 0 0 12px #00d4ff;
     transform: scale(1.1);
 }
 
@@ -111,9 +124,9 @@ table {
     margin-top: 20px;
     background: rgba(255, 255, 255, 0.1);
     color: white;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 th, td {
@@ -130,24 +143,25 @@ th {
 }
 
 td:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.3);
     transform: scale(1.05);
 }
 
 /* Results Section */
 .result {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: bold;
     margin-top: 20px;
     color: #00d4ff;
-    text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+    text-shadow: 0 0 18px rgba(0, 212, 255, 0.6);
 }
 
 /* Footer */
 .footer {
     margin-top: 20px;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8);
+    padding-bottom: 10px;
 }
 
 .footer a {
@@ -158,26 +172,59 @@ td:hover {
 
 .footer a:hover {
     color: white;
-    text-shadow: 0 0 10px white;
+    text-shadow: 0 0 12px white;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
-        padding: 20px;
+        padding: 25px;
         font-size: 14px;
     }
-
     .navbar {
         flex-direction: column;
         align-items: center;
     }
-
     .navbar a {
-        margin: 5px;
+        margin: 6px;
     }
 }
 
+/* GPA Input Fields */
+.gpa-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.gpa-inputs label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.gpa-inputs input {
+    width: 100px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.gpa-inputs input:focus {
+    outline: none;
+    border: 1px solid #FFD700;
+    box-shadow: 0 0 15px #FFD700;
+}
 
     </style>
 </head>
@@ -198,7 +245,7 @@ td:hover {
         <label for="department">Select Department:</label>
         <select id="department" onchange="loadYears()">
             <option value="">--Select Department--</option>
-            <option value="CSE">Computer Science Engineering</option>
+            <option value="CSE">Computer Science & Engineering</option>
             <option value="IT">Information Technology</option>
             <option value="AI&DS">Artificial Intelligence & Data Science</option>
             <option value="ECE">Electronics & Communication Engineering</option>
@@ -880,6 +927,7 @@ function loadSubjects() {
                         <option value="7">B+</option>
                         <option value="6">B</option>
                         <option value="5">C</option>
+                        <option value="0">U</option>
                         <option value="0">RA</option>
                     </select>
                 </td>
@@ -978,31 +1026,35 @@ function calculateCGPA() {
         document.getElementById("cgpaResult").textContent = "Invalid input!";
     }
 }
-        function generateSemesterInputs() {
-            const selectedSemester = parseInt(document.getElementById("semesters").value);
-            const gpaInputsDiv = document.getElementById("gpaInputs");
-            gpaInputsDiv.innerHTML = ""; // Clear previous inputs
+function generateSemesterInputs() {
+    const selectedSemester = parseInt(document.getElementById("semesters").value);
+    const gpaInputsDiv = document.getElementById("gpaInputs");
+    gpaInputsDiv.innerHTML = ""; // Clear previous inputs
 
-            if (!isNaN(selectedSemester)) {
-                for (let sem = 1; sem <= selectedSemester; sem++) {
-                    const label = document.createElement("label");
-                    label.textContent = `Semester ${sem} GPA:`;
-                    label.setAttribute("for", `sem${sem}`);
-                    
-                    const input = document.createElement("input");
-                    input.type = "number";
-                    input.id = `sem${sem}`;
-                    input.step = "0.01";
-                    input.min = "0";
-                    input.max = "10";
-                    input.placeholder = "Enter GPA";
+    if (!isNaN(selectedSemester)) {
+        for (let sem = 1; sem <= selectedSemester; sem++) {
+            const inputContainer = document.createElement("div");
+            inputContainer.style.textAlign = "center"; // Center-align each input and label
+            inputContainer.style.marginBottom = "10px"; // Add spacing between rows
 
-                    gpaInputsDiv.appendChild(label);
-                    gpaInputsDiv.appendChild(input);
-                }
-            }
+            const label = document.createElement("label");
+            label.textContent = `Semester ${sem} GPA:`;
+            label.setAttribute("for", `sem${sem}`);
+            
+            const input = document.createElement("input");
+            input.type = "number";
+            input.id = `sem${sem}`;
+            input.step = "0.01";
+            input.min = "0";
+            input.max = "10";
+            input.placeholder = "Enter GPA";
+
+            inputContainer.appendChild(label);
+            inputContainer.appendChild(input);
+            gpaInputsDiv.appendChild(inputContainer);
         }
-
+    }
+}
 
     </script>
 </body>
