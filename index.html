@@ -245,13 +245,17 @@ td:hover {
         <label for="department">Select Department:</label>
         <select id="department" onchange="loadYears()">
             <option value="">--Select Department--</option>
-            <option value="CSE">Computer Science & Engineering</option>
             <option value="IT">Information Technology</option>
             <option value="AI&DS">Artificial Intelligence & Data Science</option>
+            <option value="CSE">Computer Science & Engineering</option>
+            <option value="CSBS">Computer Science and Business Systems</option>
+            <option value="CIVIL">Civil Engineering</option>
             <option value="ECE">Electronics & Communication Engineering</option>
             <option value="EEE">Electrical & Electronics Engineering</option>
             <option value="MECH">Mechanical Engineering</option>
-            <option value="CIVIL">Civil Engineering</option>
+            
+            
+
             
         </select>
         
@@ -478,7 +482,82 @@ td:hover {
             { code: "IT3811", name: "Project Work/Internship", credits: 10 }
         ]
     }
-, "AI&DS": {
+,
+
+"CSBS": {
+    "1-1": [
+        { code: "HS3152", name: "Professional English - I", credits: 3 },
+        { code: "MA3151", name: "Matrices and Calculus", credits: 4 },
+        { code: "PH3151", name: "Engineering Physics", credits: 3 },
+        { code: "CY3151", name: "Engineering Chemistry", credits: 3 },
+        { code: "GE3151", name: "Problem Solving and Python Programming", credits: 3 },
+        { code: "GE3152", name: "Heritage of Tamils", credits: 1 },
+        { code: "GE3171", name: "Problem Solving and Python Programming Laboratory", credits: 2 },
+        { code: "BS3171", name: "Physics and Chemistry Laboratory", credits: 2 },
+        { code: "GE3172", name: "English Laboratory", credits: 1 }
+    ],
+    "1-2": [
+        { code: "HS3252", name: "Professional English - II", credits: 2 },
+        { code: "MA3251", name: "Statistics and Numerical Methods", credits: 4 },
+        { code: "PH3256", name: "Physics for Information Science", credits: 3 },
+        { code: "BE3251", name: "Basic Electrical and Electronics Engineering", credits: 3 },
+        { code: "GE3251", name: "Engineering Graphics", credits: 4 },
+        { code: "CS3251", name: "Programming in C", credits: 3 },
+        { code: "GE3252", name: "Tamils and Technology", credits: 1 },
+        { code: "GE3271", name: "Engineering Practices Laboratory", credits: 2 },
+        { code: "CS3271", name: "Programming in C Laboratory", credits: 2 },
+        { code: "GE3272", name: "Communication Laboratory / Foreign Language", credits: 2 }
+    ],
+    "2-1": [
+        { code: "MA3354", name: "Discrete Mathematics", credits: 4 },
+        { code: "CS3351", name: "Digital Principles and Computer Organization", credits: 4 },
+        { code: "SB3301", name: "Business Process Management", credits: 3 },
+        { code: "SB3351", name: "Foundations of Data Science", credits: 3 },
+        { code: "CS3301", name: "Data Structures", credits: 3 },
+        { code: "CS3311", name: "Data Structures Laboratory", credits: 1.5 },
+        { code: "SB3381", name: "Business Data Analytics Lab", credits: 1.5 },
+        { code: "SB3311", name: "Professional Development", credits: 1 }
+    ],
+    "2-2": [
+        { code: "CS3452", name: "Theory of Computation", credits: 3 },
+        { code: "SB3491", name: "Database Management Systems", credits: 4 },
+        { code: "SB3451", name: "Management Concepts and Practices", credits: 3 },
+        { code: "SB3492", name: "Enterprise Systems", credits: 4 },
+        { code: "CS3491", name: "Artificial Intelligence and Machine Learning", credits: 4 },
+        { code: "SB3461", name: "Database Management Systems Laboratory", credits: 1.5 },
+        { code: "SB3481", name: "AI and ML Laboratory", credits: 1.5 }
+    ],
+    "3-1": [
+        { code: "CS3591", name: "Computer Networks", credits: 4 },
+        { code: "SB3551", name: "Operations Research", credits: 3 },
+        { code: "SB3501", name: "Business Strategy", credits: 3 },
+        { code: "Elective I", name: "Professional Elective I", credits: 3 },
+        { code: "Elective II", name: "Professional Elective II", credits: 3 },
+        { code: "SB3511", name: "Business Modelling Laboratory", credits: 2 },
+        { code: "MC1", name: "Mandatory Course I", credits: 0 }
+    ],
+    "3-2": [
+        { code: "CCS356", name: "Object Oriented Software Engineering", credits: 4 },
+        { code: "SB3601", name: "Entrepreneurship Development", credits: 3 },
+        { code: "Elective III", name: "Professional Elective III", credits: 3 },
+        { code: "Elective IV", name: "Professional Elective IV", credits: 3 },
+        { code: "OEC1", name: "Open Elective I", credits: 3 },
+        { code: "SB3681", name: "Entrepreneurship Lab", credits: 2 },
+        { code: "MC2", name: "Mandatory Course II", credits: 0 }
+    ],
+    "4-1": [
+        { code: "GE3791", name: "Human Values and Ethics", credits: 2 },
+        { code: "Elective M", name: "Elective - Management", credits: 3 },
+        { code: "OEC2", name: "Open Elective II", credits: 3 },
+        { code: "OEC3", name: "Open Elective III", credits: 3 },
+        { code: "SB3711", name: "Summer Internship", credits: 2 }
+    ],
+    "4-2": [
+        { code: "SB3811", name: "Project Work / Internship", credits: 10 }
+    ]
+}
+,
+"AI&DS": {
         "1-1": [  // Semester 1
             
             { code: "HS3152", name: "Professional English - I", credits: 3 },
