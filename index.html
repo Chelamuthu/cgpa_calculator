@@ -946,36 +946,42 @@ function calculateGPA() {
     const rows = document.querySelectorAll("#subjectsTable tr");
     let totalCredits = 0;
     let weightedSum = 0;
+    let hasReappear = false;
 
     rows.forEach((row, index) => {
-        if (index === 0) return; // Skip header row
-        const credits = parseInt(row.cells[2].textContent);
-        const grade = parseInt(row.cells[3].querySelector("select").value);
+        if (index === 0) return; // Skip the header row
+
+        const credits = parseFloat(row.cells[2].textContent);
+        const grade = parseFloat(row.cells[3].querySelector("select").value);
 
         if (!isNaN(credits) && !isNaN(grade)) {
-            totalCredits += credits;
-            weightedSum += credits * grade;
+            if (grade > 0) { // Only count passed subjects
+                totalCredits += credits;
+                weightedSum += credits * grade;
+            } else {
+                hasReappear = true; // Reappear subject
+            }
         }
     });
 
-    const gpa = totalCredits > 0 ? (weightedSum / totalCredits).toFixed(2) : "Invalid input!";
+    let gpa = totalCredits > 0 ? weightedSum / totalCredits : 0;
+    gpa = gpa.toFixed(2);
     document.getElementById("gpaResult").textContent = gpa;
 
-    // Display motivational message for GPA
-    const gpaMotivation = document.getElementById("gpaMotivationMessage");
-    if (gpa === "Invalid input!") {
-        gpaMotivation.textContent = "Please ensure all grades and credits are entered correctly.";
+    // Motivational message
+    const msg = document.getElementById("gpaMotivationMessage");
+    if (hasReappear) {
+        msg.textContent = "You have reappeared subjects. GPA is calculated excluding them.";
     } else if (gpa >= 9) {
-        gpaMotivation.textContent = "Excellent work! Keep up the great performance!";
+        msg.textContent = "Excellent work! Keep it up!";
     } else if (gpa >= 7) {
-        gpaMotivation.textContent = "Good job! You’re doing well, but there’s always room for improvement.";
+        msg.textContent = "Good job! Keep improving!";
     } else if (gpa >= 5) {
-        gpaMotivation.textContent = "You’re passing, but consider putting in more effort to improve.";
+        msg.textContent = "You passed, but try to push harder!";
     } else {
-        gpaMotivation.textContent = "Don’t be discouraged! Learn from your mistakes and aim higher next time.";
+        msg.textContent = "Don’t give up. Keep learning and improving!";
     }
 
-    // Show the GPA section
     document.getElementById("gpaSection").style.display = "block";
 }
 
